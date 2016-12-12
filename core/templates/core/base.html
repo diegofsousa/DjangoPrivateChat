@@ -1,9 +1,11 @@
+{% load aux_tags %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title>{% block title %}{% endblock %}</title>
 	<meta charset="utf-8">
 	{% load staticfiles %}
+
 	<link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap/css/bootstrap.min.css' %}">
 	<script language="javascript" src="{% static 'core/css/bootstrap/js/jquery-3.1.0.min.js' %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
@@ -11,7 +13,6 @@
 <body id="bg">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         	<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavBar">
 				<span class="icon-bar"></span>
@@ -20,29 +21,47 @@
 			</button>
 			<a class="navbar-brand" href="#">Private Chat</a>
 			</div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="topNavBar">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="/">Home</a></li>
 					<li><a href="#">About</a></li>
 				</ul>
-				{% if request.user.is_authenticated %}
-				<ul class="nav navbar-nav navbar-right">             
+				<ul class="nav navbar-nav navbar-right"> 
+				{% if request.user.is_authenticated %}				            
 					<li class="dropdown">              
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }}<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.first_name }}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="/logout/"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logout</a></li>
+							<li class="hoverLiFix color-black" onclick="logout()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logout</li>
 						</ul>
 					</li>
-				</ul>
+				
+				{% else %}
+	            <li>
+	                <div class="navbar-form navbar-right col-xs-12">
+	                    <div class="form-group">
+	                        <label class="sr-only" for="user">
+	                            user:
+	                        </label>
+	                        <input type="text" class="form-control" id="inputUsernameL" placeholder="Username" name="username">
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="sr-only" for="pass">
+	                            password:
+	                        </label>
+	                        <input type="password" class="form-control" id="inputPasswordL" placeholder="Password" name="pass">
+	                    </div>
+	                    <button onclick="login()" class="btn btn-success btn-sm">Sign in</button>
+	                </div>
+	            </li>
 				{% endif %}
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+				</ul>
+			</div>
+		</div>
 	</nav>
 {% block body %}
 {% endblock %}
 
 <script language="javascript" src="{% static 'core/css/bootstrap/js/bootstrap.min.js' %}"></script>
+<script language="javascript" src="{% static 'core/js/registerfields.js' %}"></script>
 </body>
 </html>

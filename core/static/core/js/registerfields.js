@@ -1,3 +1,6 @@
+//Functions for user authentication and register with AJAX
+
+//This function register a new user.
 function register(){
     var iName = $('#inputName').val()
     var iUsername = $('#inputUsername').val()
@@ -6,15 +9,14 @@ function register(){
         alert("Some fields are empty!");
     } else{
         $.ajax({
-            url : "/register/", // the endpoint
-            type : "POST", // http method
+            url : "/register/",
+            type : "POST",
             data : { 
                 name : iName,
                 username : iUsername,
                 password : iPass,
-                 }, // data sent with the post request
+                 },
 
-            // handle a successful response
             success : function(json) {
                 if (json == true) {
                     parent.window.document.location.href = '';
@@ -23,7 +25,6 @@ function register(){
                 }            
             },
 
-            // handle a non-successful response
             error : function(xhr,errmsg,err) {
                 console.log(xhr.status + ": " + xhr.responseText);
                alert("Something went wrong.")
@@ -33,6 +34,7 @@ function register(){
     }   
 }
 
+//This function make autentication for the user
 function login(){
     var iUsernameL = $('#inputUsernameL').val()
     var iPassL = $('#inputPasswordL').val()
@@ -41,14 +43,13 @@ function login(){
         alert("Some fields are empty!");
     } else{
         $.ajax({
-            url : "/login/", // the endpoint
-            type : "POST", // http method
+            url : "/login/",
+            type : "POST",
             data : { 
                 username : iUsernameL,
                 password : iPassL,
-                 }, // data sent with the post request
+                 },
 
-            // handle a successful response
             success : function(json) {
                 if (json == true) {
                     parent.window.document.location.href = '';
@@ -57,7 +58,6 @@ function login(){
                 }            
             },
 
-            // handle a non-successful response
             error : function(xhr,errmsg,err) {
                 console.log(xhr.status + ": " + xhr.responseText);
                alert("Something went wrong.")
@@ -67,8 +67,30 @@ function login(){
     }   
 }
 
-//Cookies globais padrões para utilização do AJAX
+//This function make logout for user.
+function logout(){
+    $.ajax({
+        url : "/logout/",
+        type : "GET",
+        
+        success : function(json) {
+            if (json == true) {
+                parent.window.document.location.href = '';
+            } else {
+                alert("Something went wrong....");
+            }            
+        },
 
+        error : function(xhr,errmsg,err) {
+            console.log(xhr.status + ": " + xhr.responseText);
+           alert("Something went wrong.")
+
+        }
+    }); 
+       
+}
+
+//Standard of use CSRF with AJAX
 function getCookie(name) {
         var cookieValue = null;
         var i = 0;
