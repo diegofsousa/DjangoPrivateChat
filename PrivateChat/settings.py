@@ -121,7 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-#Heroku settings
+# Heroku settings for deploy
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 
