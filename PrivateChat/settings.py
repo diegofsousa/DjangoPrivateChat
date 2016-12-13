@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 #Heroku settings
 import dj_database_url
 DATABASES['default'] = dj_database_url.config()
@@ -132,5 +133,5 @@ STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'core/static/'),
 )
