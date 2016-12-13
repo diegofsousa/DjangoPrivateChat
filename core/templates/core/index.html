@@ -1,6 +1,55 @@
 {% extends 'core/base.html' %}
 {% block title %}Private Chat{% endblock %}
-
+{% load staticfiles %}
 {% block body %}
-<h1>Logado como: {{ request.user }}</h1>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sx-12">
+			<h1>Hi, {{ request.user.first_name }}</h1>
+			<h4>To start a conversation, choose a user below and go to "chat". :)</h4>
+		</div>
+		<div class="col-sx-12">
+			{% if recently_users %}
+				<h3>Your conversations:</h3>
+			{% endif %}		
+
+			<div id="slide_recently" data-slick='{"slidesToShow": 7, "slidesToScroll": 2}'>
+				{% for user in recently_users %}
+					<div class="element" data-toggle="tooltip" data-placement="right" title="Username: {{ user.0.username }} - Last login at {{ user.0.last_login }}">
+						<h3>{{ user.0.first_name|truncatechars:7 }}</h3>
+						{% if request.user == user.1.emitter %}
+							<p class="detailMsg">You: {{ user.1.text }}</p>
+						{% else %}
+							<p class="detailMsg">{{ user.0.first_name|truncatechars:7 }}: {{ user.1.text|truncatechars:7 }}</p>
+						{% endif %}
+						{% if user.2 == False %}
+							<a href="{% url 'core:room' user.0.pk %}" class="btn btn-block btn-success btn-xs"><span class="label label-default">Not read</span> Chat</a>	
+						{% else %}
+							<a href="{% url 'core:room' user.0.pk %}" class="btn btn-block btn-success btn-xs">Chat</a>
+						{% endif %}
+										
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+		<div class="col-sx-12">
+			<h3>All users:</h3>
+
+			<div id="slide_all" data-slick='{"slidesToShow": 7, "slidesToScroll": 2}'>
+				{% for user in all_users %}
+					<div class="element" data-toggle="tooltip" data-placement="right" title="Username: {{ user.username }} - Last login at {{ user.last_login }}">
+						<h3>{{ user.first_name|truncatechars:7 }}</h3>
+						<p class="detailMsg">Joined: {{ user.date_joined }}</p>
+						<a href="{% url 'core:room' user.pk %}" class="btn btn-block btn-primary btn-xs">Chat</a>										
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load aux_tags %}
 {% load staticfiles %}
-{% block title %}{{ user_visited.first_name }} - Private Chat{% endblock %}
+{% block title %}{{ user_visited.first_name }} ({{ user_visited.username }}) - Private Chat{% endblock %}
 
 {% block body %}
 <script type="text/javascript">
@@ -15,7 +15,7 @@
 				<div class="panel-heading stylebar">
 					<div class="col-xs-12">
 						<div class="col-xs-10">
-							{{ user_visited.first_name }}  
+							{{ user_visited.first_name }} ({{ user_visited.username }}) - Last login at {{ user_visited.last_login }}
 						</div>
 					  	
 					  	
@@ -93,6 +93,6 @@
 		</div>
 	</div>
 </div>
-<script language="javascript" src="{% static 'core/js/nanoScroller.js' %}"></script>
+<script language="javascript" src="{% static 'core/js/nanoScroller.min.js' %}"></script>
 <script language="javascript" src="{% static 'core/js/chat.js' %}"></script>
 {% endblock %}

@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^register/$', views.register),
     url(r'^login/$', views.make_login),
     url(r'^logout/$', views.make_logout),
+    url(r'^delete/$', views.delete_account),
 
     #Pages of inbox
     url(r'^message/(?P<pkreceiver>[0-9]+)/$', views.room, name='room'),

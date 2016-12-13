@@ -10,7 +10,10 @@ def index(request):
 	if not request.user.is_authenticated():
 		return render(request, 'core/login.html')
 	else:
-		return render(request, 'core/index.html')
+		instance_message = Message()
+		recently_users = instance_message.get_users_recently(request.user)
+		all_users = sorted(User.objects.all(), key=lambda inst: inst.date_joined)[::-1]
+		return render(request, 'core/index.html', {'recently_users':recently_users, 'all_users':all_users})
 
 def register(request):
 	if request.method == 'POST' and request.is_ajax():
@@ -38,9 +41,16 @@ def make_login(request):
 		return HttpResponse(json.dumps(False), content_type="application/json")
 	raise Http404
 
+
 def make_logout(request):
 	if request.is_ajax():
 		logout(request)
+		return HttpResponse(json.dumps(True), content_type="application/json")
+	raise Http404
+
+def delete_account(request):
+	if request.is_ajax():
+		request.user.delete()
 		return HttpResponse(json.dumps(True), content_type="application/json")
 	raise Http404
 

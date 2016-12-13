@@ -1,5 +1,9 @@
 //Functions for user authentication and register with AJAX
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 //This function register a new user.
 function register(){
     var iName = $('#inputName').val()
@@ -90,6 +94,33 @@ function logout(){
        
 }
 
+//This function delete an account.
+function delete_account(){
+    $.ajax({
+        url : "/delete/",
+        type : "GET",
+        
+        success : function(json) {
+            if (json == true) {
+                parent.window.document.location.href = '';
+            } else {
+                alert("Something went wrong....");
+            }            
+        },
+
+        error : function(xhr,errmsg,err) {
+            console.log(xhr.status + ": " + xhr.responseText);
+           alert("Something went wrong.")
+
+        }
+    }); 
+       
+}
+
+$("#slide_recently").slick();
+$("#slide_all").slick();
+
+
 //Standard of use CSRF with AJAX
 function getCookie(name) {
         var cookieValue = null;
@@ -121,3 +152,4 @@ function getCookie(name) {
             }
         }
     }); 
+

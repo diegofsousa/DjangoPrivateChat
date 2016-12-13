@@ -7,10 +7,6 @@ setInterval("verify_read()", 2000);
 
 var oldm = 0;
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-
 //When "enter" has pressed
 $(document).keypress(function(e) {
     if(e.which == 13){

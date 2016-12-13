@@ -9,6 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap/css/bootstrap.min.css' %}">
 	<script language="javascript" src="{% static 'core/css/bootstrap/js/jquery-3.1.0.min.js' %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'core/js/slick/slick.min.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'core/js/slick/slick-theme.min.css' %}"/>
+	<script type="text/javascript" src="{% static 'core/js/slick/slick.min.js' %}"></script>
+
 </head>
 <body id="bg">
 	<nav class="navbar navbar-default">
@@ -32,13 +36,33 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.first_name }}<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li class="hoverLiFix color-black" onclick="logout()"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Logout</li>
+							<li class="hoverLiFix color-black" data-toggle="modal" data-target="#modalDeleteAccount"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete your account</li>
 						</ul>
+						<!-- Modal -->
+						<div class="modal fade" id="modalDeleteAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title color-black" id="myModalLabel">Delete your account</h4>
+							      </div>
+							      <div class="modal-body color-black">
+							        By completing this action, you will delete this account.
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        <button type="button" class="btn btn-danger" onclick="delete_account()">I want to delete my account</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
 					</li>
 				
 				{% else %}
 	            <li>
 	                <div class="navbar-form navbar-right col-xs-12">
 	                    <div class="form-group">
+	                    {% csrf_token %}
 	                        <label class="sr-only" for="user">
 	                            user:
 	                        </label>
@@ -63,5 +87,7 @@
 
 <script language="javascript" src="{% static 'core/css/bootstrap/js/bootstrap.min.js' %}"></script>
 <script language="javascript" src="{% static 'core/js/registerfields.js' %}"></script>
+
+
 </body>
 </html>

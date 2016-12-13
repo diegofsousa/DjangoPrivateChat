@@ -13,6 +13,16 @@ class Message(models.Model):
 	def __str__(self):
 		return 'Message from ' + self.emitter.first_name + ' for ' + self.receiver.first_name
 
+	def get_users_recently(self, user_loged):
+		l = list()
+
+		for user_visited in User.objects.all():
+			if self.get_ultimate_message(user_loged, user_visited):
+				read = True
+				if self.get_ultimate_message(user_loged, user_visited).emitter != user_loged and self.get_ultimate_message(user_loged, user_visited).visualized == False:read = False
+				l.append([user_visited, self.get_ultimate_message(user_loged, user_visited), read])
+		return sorted((sorted(l, key=lambda inst: inst[1].date_message)[::-1]), key=lambda inst: inst[1].visualized)
+
 	def get_30_messages(self, user_loged, user_visited):
 		ms = list()
 
@@ -86,7 +96,7 @@ class Message(models.Model):
 		newMessage.save()
 		return[newMessage.text, self.format_date_chat(newMessage.date_message)]
 
-	def check_read_ultimate_message(self, user_loged, user_visited):
+	def get_ultimate_message(self, user_loged, user_visited):
 		ms = list()
 
 		mlog = Message.objects.filter(emitter=user_loged, receiver=user_visited)
@@ -97,9 +107,13 @@ class Message(models.Model):
 
 		if len(ms) == 0:return False
 
-		ultimate_message = sorted(ms, key=lambda inst: inst.date_message)[-1]
-		if ultimate_message.emitter == user_loged and ultimate_message.visualized == True:
-			return True
+		return sorted(ms, key=lambda inst: inst.date_message)[-1]
+
+	def check_read_ultimate_message(self, user_loged, user_visited):
+		ultimate_message = self.get_ultimate_message(user_loged, user_visited)
+		if ultimate_message != False:
+			if ultimate_message.emitter == user_loged and ultimate_message.visualized == True:
+				return True
 		return False
 
 	def delete_messages(self, user_loged, user_visited):

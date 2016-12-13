@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
 body#bg{
+	font-family: 'PT Sans', sans-serif;
 	background-image: url("../imagens/background.png");
 	color: #FFFFFF;
 }
@@ -62,6 +65,27 @@ input#inputUsernameL, input#inputPasswordL{
 	margin-bottom: 0px;
 	margin-right: 10px;
 	color: #58CBBC;
+}
+
+.element{
+	background-color: #FFF;
+	margin: 3px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.element > h3{
+	text-align: center;
+	color: #000;
+}
+
+.detailMsg{
+	color: #696969;
+}
+
+.noRead{
+	position: relative;
+	margin: 4px;
 }
 
 /*Nano scroller*/
