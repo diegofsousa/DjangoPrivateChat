@@ -19,6 +19,22 @@ input#inputUsernameL, input#inputPasswordL{
 	color: #000;
 }
 
+.space{
+	height: 50px;
+}
+
+.desc{
+	margin-bottom: 50px;
+}
+
+.panelone{
+	height: 400px;
+}
+
+div#container-rodape{
+	background-color: #141D1D;
+}
+
 .hoverLiFix{
 	padding: 5px;
 	text-align: center;

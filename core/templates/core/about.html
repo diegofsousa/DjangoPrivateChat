@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% block title %}Private Chat - About{% endblock %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container color-black">
+	<div class="row">
+		<div class="col-sx-12">			
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    <h1>About Private Chat</h1>
+			    <p>Private Chat is a open source project what makes the function of an instant messenger. This is done with a back-end system written essentially in Python and Django.</p>
+			    <h3>How is the content made dynamic in the pages?</h3>
+			    <p>In order for the page content to be dynamic without reloading, options were used for the client side. JavaScript along with the JQuery library has important roles for this.
+				In the chat room, the system makes periodic requests for information about new messages and verification of read messages. This is done with AJAX requests.</p>
+				<h3>Used on front-end:</h3>
+				<ul>
+					<li>Bootstrap 3</li>
+					<li>JQuery</li>
+					<li>nanoScroller.js</li>
+					<li>slick</li>
+				</ul>
+				<h3>Used on back-end</h3>
+				<ul>
+					<li>Python 3.4</li>
+					<li>Django 1.10.4</li>
+				</ul>
+				<h3>How to install</h3>
+				<p>If you want to use this project, you can install it on your machine by following the steps in README.md on the project repository page in <a href="https://github.com/diegofsousa/DjangoPrivateChat" target="_blank">GitHub</a>.</p>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

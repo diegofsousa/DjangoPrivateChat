@@ -23,12 +23,13 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Private Chat</a>
+			<a class="navbar-brand" href="/">Private Chat</a>
 			</div>
 			<div class="collapse navbar-collapse" id="topNavBar">
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="/">Home</a></li>
-					<li><a href="#">About</a></li>
+					<li><a href="{% url 'core:about' %}">About</a></li>
+					<li><a href="https://github.com/diegofsousa/DjangoPrivateChat" target="_blank">View on GitHub</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right"> 
 				{% if request.user.is_authenticated %}				            
@@ -82,12 +83,37 @@
 			</div>
 		</div>
 	</nav>
+
+
 {% block body %}
 {% endblock %}
-
+	<div class="container-fluid" id="container-rodape">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <h4>Private Chat</h4>
+                    <p>"Private chat" is an open source project that functions as a messenger taking and bringing texts through asynchronous requests.</p>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-">
+                    <h4>About contribuitions</h4>
+                    <!-- Place this tag where you want the button to render. -->
+					<a class="github-button" href="https://github.com/diegofsousa/DjangoPrivateChat" data-icon="octicon-star" data-count-href="/diegofsousa/DjangoPrivateChat/stargazers" data-count-api="/repos/diegofsousa/DjangoPrivateChat#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star diegofsousa/DjangoPrivateChat on GitHub">Star</a>
+					<a class="github-button" href="https://github.com/diegofsousa/DjangoPrivateChat/fork" data-count-href="/diegofsousa/DjangoPrivateChat/network" data-count-api="/repos/diegofsousa/DjangoPrivateChat#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork diegofsousa/DjangoPrivateChat on GitHub">Fork</a>
+                    <p>This project is open for contributions!<br>:)</p>
+                    <!-- Place this tag where you want the button to render. -->
+					
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                	<h4>About the developer</h4>
+                    <p>Diego Fernando is on <a href="http://github.com/diegofsousa" target="_blank">GitHub</a> <br> and in email: <br>diegofernando5672@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
 <script language="javascript" src="{% static 'core/css/bootstrap/js/bootstrap.min.js' %}"></script>
 <script language="javascript" src="{% static 'core/js/registerfields.js' %}"></script>
-
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 </body>
 </html>

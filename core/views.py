@@ -65,6 +65,8 @@ def room(request, pkreceiver):
 		messages = instance_message.get_30_messages(request.user, user_visited)
 		return render(request, 'core/room.html', {'messages':messages, 'user_visited':user_visited})
 
+def about(request):
+	return render(request, 'core/about.html')
 
 # AJAX for the Chat room
 

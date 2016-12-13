@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% block title %}{{ request.user.first_name }} ({{ request.user.username }}) - Private Chat{% endblock %}
+{% load staticfiles %}
+{% block body %}
+
+<div class="container color-black">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading stylebar">
+					<div class="col-xs-12">
+						<div class="col-xs-10">
+							{{ request.user.first_name }} ({{ request.user.username }}) - Last login at {{ request.user.last_login }}
+						</div>
+						
+					</div>
+				</div>
+				<div class="panel-body panelone">					
+					<h3>Hello darkness, my old friend... &#9835;</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
