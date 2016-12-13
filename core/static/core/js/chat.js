@@ -1,9 +1,9 @@
 //Chat room functions
 
 setTimeout("get_new_massages()", 1);
-setInterval("get_new_massages()", 2000);
+setInterval("get_new_massages()", 500);
 setTimeout("verify_read()", 1);
-setInterval("verify_read()", 2000);
+setInterval("verify_read()", 500);
 
 var oldm = 0;
 
@@ -25,6 +25,7 @@ function get_new_massages(){
         type : "GET",
 
         success : function(json) {
+            console.log("Seaching new messages");
             for (var i = 0; i < json.length; i++) {
                 console.log(json[i][0])
                 $('#newmessage').append("<p class='msg-receiver'>"+ json[i][0] +"</p>");
@@ -152,7 +153,7 @@ function verify_read() {
              
         success : function(json) {
             if(json == true){
-                $("#alertvisualized").html("<span class='glyphicon glyphicon-eye-open'></span> Visualized").addClass("pull-right txtvisualized");
+                $("#alertvisualized").html("Visualized").addClass("pull-right txtvisualized");
             }else{
                 $("#alertvisualized").html("");
             }
