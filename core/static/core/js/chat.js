@@ -1,9 +1,9 @@
 //Chat room functions
 
 setTimeout("get_new_massages()", 1);
-setInterval("get_new_massages()", 500);
+setInterval("get_new_massages()", 4000);
 setTimeout("verify_read()", 1);
-setInterval("verify_read()", 500);
+setInterval("verify_read()", 2000);
 
 var oldm = 0;
 
