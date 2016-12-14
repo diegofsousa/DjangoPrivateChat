@@ -12,8 +12,9 @@ def index(request):
 	else:
 		instance_message = Message()
 		recently_users = instance_message.get_users_recently(request.user)
+		count_messages = instance_message.count_messages(request.user)
 		all_users = sorted(User.objects.all(), key=lambda inst: inst.date_joined)[::-1]
-		return render(request, 'core/index.html', {'recently_users':recently_users, 'all_users':all_users})
+		return render(request, 'core/index.html', {'recently_users':recently_users, 'all_users':all_users, 'count_messages':count_messages})
 
 def register(request):
 	if request.method == 'POST' and request.is_ajax():

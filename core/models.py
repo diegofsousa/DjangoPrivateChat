@@ -13,6 +13,13 @@ class Message(models.Model):
 	def __str__(self):
 		return 'Message from ' + self.emitter.first_name + ' for ' + self.receiver.first_name
 
+	def count_messages(self, user_loged):
+		tam = 0
+		for message in self.get_users_recently(user_loged):
+			if message[2] == False:
+				tam += 1
+		return tam
+
 	def get_users_recently(self, user_loged):
 		l = list()
 

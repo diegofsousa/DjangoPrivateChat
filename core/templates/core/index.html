@@ -1,15 +1,16 @@
 {% extends 'core/base.html' %}
-{% block title %}Private Chat{% endblock %}
+{% block title %}{% if count_messages %}({{ count_messages }}) {% endif %}Private Chat {% endblock %}
 {% load staticfiles %}
 {% block body %}
 
 <div class="container">
 	<div class="row">
 		<div class="col-sx-12">
-			<h1>Hi, {{ request.user.first_name }}</h1>
+			<h1>Hi, {{ request.user.first_name }}</h1>			
+			<h3>{% if count_messages %}<span style="color: yellow">{{ count_messages }}</span> people talked to you.{% endif %}</h3>
 			<h4>To start a conversation, choose a user below and go to "chat". :)</h4>
 		</div>
-		<div class="col-sx-12">
+		<div class="col-xs-11 col-sm-12 col-md-12 col-lg-12">
 			{% if recently_users %}
 				<h3>Your contacts:</h3>
 			{% endif %}		
@@ -34,10 +35,10 @@
 
 			</div>
 		</div>
-		<div class="col-sx-12">
+		<div class="col-xs-11 col-sm-12 col-md-12 col-lg-12">
 			<h3>All users:</h3>
 
-			<div id="slide_all" data-slick='{"slidesToShow": 7, "slidesToScroll": 2}'>
+			<div id="slide_all">
 				{% for user in all_users %}
 					<div class="element" data-toggle="tooltip" data-placement="right" title="Username: {{ user.username }} - Last login at {{ user.last_login }}">
 						<h3>{{ user.first_name|truncatechars:7 }}</h3>
