@@ -33,16 +33,16 @@ Sequence of steps:
 
 5. Run the ```python manage.py makemigrations``` and ```python manage.py migrate``` to create the application tables.
 
-6. To start run ```python manage.py runserver```.
+6. To start run ```python manage.py runserver.``` 
 
 ## Example usage
 
 Basically what the system does is identify a user action and access the database through ajax requests and bring, add or delete data to the page without having to reload the page.
-There are three essential files in the chat system:<br><br>
+There are three essential files in the chat system:
 
-```chat.js```<br>
-```views.py```<br>
-```models.py```<br><br>
+```chat.js``` <br>
+```views.py``` <br>
+```models.py``` <br><br>
 
 Requests are made in the ```chat.js``` file using the JQuery library. The use of the ```setInterval()``` is done in the requests of new messages and the confirmation of reading the message.
 Each ajax function does a GET or POST has access to a view within ```views.py``` through a route. In screen views are made of shields not to accept requests that are not AJAX and that are not of the logged in user.
