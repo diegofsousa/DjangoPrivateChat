@@ -51,11 +51,24 @@ For views to return information to ```chat.js```, instances of the ```models.py`
 ## What was used
 
 ### Used on front-end:
-* Bootstrap 3
-* JQuery
-* nanoScroller.js
-* slick
+* [Bootstrap 3](http://getbootstrap.com.br/)
+* [JQuery](https://jquery.com/)
+* [nanoScroller.js](https://jamesflorentino.github.io/nanoScrollerJS/)
+* [slick](http://kenwheeler.github.io/slick/)
 
 ### Used on back-end
-* Python 3.4
-* Django 1.10.4
+* [Python 3.4](https://www.python.org/)
+* [Django 1.10.4](https://www.djangoproject.com/)
+
+### Used on deploy
+* [Heroku](https://www.heroku.com/)
+
+## About contributions
+
+The project is open for contributions, preferably with pull requests.
+
+## doubts?
+
+Contact me on diegofernanfo5672@gmail.com
+
+:)
